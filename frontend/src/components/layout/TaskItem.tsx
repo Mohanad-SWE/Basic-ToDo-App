@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react'
+import { useState } from 'react'
 import { Task } from '../type/types'
 import { Trash2, Edit2, Check, X, Calendar } from 'lucide-react'
 import { Button } from '@/components/ui/button'
@@ -17,18 +17,14 @@ export function TaskItem({ task, onDelete, onToggle, onEdit }: TaskItemProps) {
   const [isEditing, setIsEditing] = useState(false)
   const [editedText, setEditedText] = useState(task.title)
 
-  useEffect(() => {
-    console.log(task.title) // Log the task title for verification
-  }, [])
-
   const handleEdit = () => {
     onEdit(task.id, editedText)
     setIsEditing(false)
   }
 
   return (
-    <div className="flex flex-col bg-gray-50 dark:bg-gray-700 p-3 rounded-md mb-2 shadow-sm transition-all duration-200 hover:shadow-md">
-      <div className="flex items-center space-x-2">
+    <div className="flex  flex-col bg-gray-50 dark:bg-gray-700 p-3 rounded-md mb-2 shadow-sm transition-all duration-200 hover:shadow-md">
+      <div className="flex items-center space-x-2   ">
         <Checkbox
           checked={task.completed}
           onCheckedChange={() => onToggle(task.id)}
@@ -42,15 +38,15 @@ export function TaskItem({ task, onDelete, onToggle, onEdit }: TaskItemProps) {
             className="flex-grow"
           />
         ) : (
-          <span
-            className={`flex-grow ${
+          <p
+            className={`flex-grow max-w-[250px] break-words  ${
               task.completed
                 ? 'line-through text-gray-500 dark:text-gray-400'
                 : 'text-gray-800 dark:text-gray-200'
             }`}
           >
             {task.title} {/* Updated from task.text */}
-          </span>
+          </p>
         )}
         {isEditing ? (
           <>
